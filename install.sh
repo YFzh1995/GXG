@@ -4,12 +4,13 @@
 # GitHub: https://github.com/YFzh1995/GXG
 #
 # 用法:
-#   curl -fsSL https://raw.githubusercontent.com/YFzh1995/gxg/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/YFzh1995/GXG/main/install.sh | bash
 #   bash install.sh                    # 自动检测平台
 #   bash install.sh opencode           # 指定平台
 #   bash install.sh --path ~/myskills  # 自定义安装路径
+#   bash install.sh --list             # 查看支持的平台列表
 #
-# 支持平台: opencode | codex | claude-code | cursor | generic
+# 支持平台: opencode | codex | claude-code | cursor | workbuddy | 自定义路径
 
 set -euo pipefail
 
@@ -36,9 +37,12 @@ detect_platform() {
     detected="claude-code"
   elif [ -d "$HOME/.cursor" ]; then
     detected="cursor"
+  elif [ -d "$HOME/.workbuddy" ]; then
+    detected="workbuddy"
   else
     detected="opencode"
     warn "未检测到已知平台，默认使用 opencode 路径"
+    warn "可使用 --path 指定自定义路径，或 --list 查看所有支持平台"
   fi
   echo "$detected"
 }
@@ -50,6 +54,7 @@ get_skills_dir() {
     codex)       echo "$HOME/.codex/skills" ;;
     claude-code) echo "$HOME/.claude/skills" ;;
     cursor)      echo "$HOME/.cursor/skills" ;;
+    workbuddy)   echo "$HOME/.workbuddy/skills" ;;
     *)           echo "$platform" ;;
   esac
 }
@@ -64,9 +69,20 @@ while [[ $# -gt 0 ]]; do
       CUSTOM_PATH="$2"
       shift 2
       ;;
-    opencode|codex|claude-code|cursor)
+    opencode|codex|claude-code|cursor|workbuddy)
       PLATFORM="$1"
       shift
+      ;;
+    --list)
+      echo "支持的平台："
+      echo "  opencode      —  ~/.config/opencode/skills/"
+      echo "  codex         —  ~/.codex/skills/"
+      echo "  claude-code   —  ~/.claude/skills/"
+      echo "  cursor        —  ~/.cursor/skills/"
+      echo "  workbuddy     —  ~/.workbuddy/skills/"
+      echo ""
+      echo "自定义路径：bash install.sh --path /your/custom/path"
+      exit 0
       ;;
     *)
       warn "未知参数: $1（已忽略）"
@@ -116,6 +132,7 @@ fi
 
 # ── 安装主路由 ────────────────────────────────────────
 info "安装主路由..."
+mkdir -p "$SKILLS_DIR/gxg"
 rsync -a "$REPO_DIR/SKILL.md" "$SKILLS_DIR/gxg/"
 rsync -a "$REPO_DIR/VERSION" "$SKILLS_DIR/gxg/"
 rsync -a "$REPO_DIR/install.sh" "$SKILLS_DIR/gxg/" 2>/dev/null || true

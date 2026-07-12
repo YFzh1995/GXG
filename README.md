@@ -41,7 +41,7 @@ bash install.sh --path ~/my-skills
 ## 更新
 
 ```bash
-cd ~/.config/opencode/skills/gxg
+cd ~/.config/opencode/skills/gxg  # 根据你的终端调整路径
 git pull origin main && bash install.sh
 ```
 
