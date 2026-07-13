@@ -1,0 +1,3 @@
+display_name: 人岗匹配
+short_description: 基于简历和JD，分维度评估匹配度、差距和面试风险
+default_prompt: 分析候选人与目标岗位的匹配度，输出分维度评价，指出优势、差距和待验证项
