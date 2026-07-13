@@ -160,6 +160,9 @@ mkdir -p "$SKILLS_DIR/gxg"
 rsync -a "$REPO_DIR/SKILL.md" "$SKILLS_DIR/gxg/"
 rsync -a "$REPO_DIR/VERSION" "$SKILLS_DIR/gxg/"
 rsync -a "$REPO_DIR/install.sh" "$SKILLS_DIR/gxg/" 2>/dev/null || true
+if [ -d "$REPO_DIR/agents" ]; then
+  rsync -a "$REPO_DIR/agents/" "$SKILLS_DIR/gxg/agents/"
+fi
 
 # 初始化 .last_check
 if [ ! -f "$SKILLS_DIR/gxg/.last_check" ]; then

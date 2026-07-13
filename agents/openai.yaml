@@ -1,0 +1,3 @@
+display_name: GXG
+short_description: 观星哥的财经职场工具箱——面试辅导、商业洞察
+default_prompt: 识别用户意图，路由到面试辅导(gxg-interview)或商业洞察(gxg-insight)子技能
