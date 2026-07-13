@@ -28,23 +28,44 @@ error() { echo -e "${RED}[GXG]${NC} $1"; exit 1; }
 
 # ── 平台检测 ──────────────────────────────────────────
 detect_platform() {
-  local detected=""
+  local platforms=()
   if command -v opencode &>/dev/null || [ -d "$HOME/.config/opencode" ]; then
-    detected="opencode"
-  elif [ -d "$HOME/.codex" ]; then
-    detected="codex"
-  elif [ -d "$HOME/.claude" ]; then
-    detected="claude-code"
-  elif [ -d "$HOME/.cursor" ]; then
-    detected="cursor"
-  elif [ -d "$HOME/.workbuddy" ]; then
-    detected="workbuddy"
-  else
-    detected="opencode"
+    platforms+=("opencode")
+  fi
+  if [ -d "$HOME/.codex" ]; then
+    platforms+=("codex")
+  fi
+  if [ -d "$HOME/.claude" ]; then
+    platforms+=("claude-code")
+  fi
+  if [ -d "$HOME/.cursor" ]; then
+    platforms+=("cursor")
+  fi
+  if [ -d "$HOME/.workbuddy" ]; then
+    platforms+=("workbuddy")
+  fi
+
+  if [ ${#platforms[@]} -eq 0 ]; then
     warn "未检测到已知平台，默认使用 opencode 路径"
     warn "可使用 --path 指定自定义路径，或 --list 查看所有支持平台"
+    echo "opencode"
+    return
   fi
-  echo "$detected"
+
+  if [ ${#platforms[@]} -eq 1 ]; then
+    echo "${platforms[0]}"
+    return
+  fi
+
+  # 多个平台共存时，不静默选择一个
+  warn "检测到多个已安装平台: ${platforms[*]}"
+  warn "请指定目标平台，例如: bash install.sh opencode"
+  warn "或使用 --path 指定自定义路径"
+  warn "---"
+  for p in "${platforms[@]}"; do
+    warn "  bash install.sh $p"
+  done
+  exit 1
 }
 
 get_skills_dir() {
@@ -66,6 +87,9 @@ CUSTOM_PATH=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --path)
+      if [[ $# -lt 2 || -z "${2:-}" ]]; then
+        error "--path 需要一个目标路径，例如: bash install.sh --path /your/custom/path"
+      fi
       CUSTOM_PATH="$2"
       shift 2
       ;;
@@ -157,6 +181,14 @@ for skill_dir in "$REPO_DIR/skills/"*/; do
     continue
   fi
 
+  # 备份旧版本
+  if [ -d "$target" ]; then
+    BACKUP_DIR="$SKILLS_DIR/.gxg-backup/${skill_name}-$(date +%Y%m%d-%H%M%S)"
+    mkdir -p "$BACKUP_DIR"
+    cp -R "$target" "$BACKUP_DIR/"
+    info "  已备份到 ${BACKUP_DIR}"
+  fi
+
   rm -rf "$target"
   mkdir -p "$target"
   rsync -a "$skill_dir" "$target"
@@ -179,7 +211,7 @@ echo -e "  ${CYAN}●${NC} 面试辅导与陪跑教练   →  gxg-interview"
 echo -e "  ${CYAN}●${NC} 商业洞察               →  gxg-insight"
 echo ""
 info "使用方法：在 AI 对话中输入 @gxg 即可开始"
-info "手动更新：cd ${SKILLS_DIR}/gxg && git pull && bash install.sh"
+info "手动更新：curl -fsSL https://raw.githubusercontent.com/YFzh1995/GXG/main/install.sh | bash"
 info ""
 info "观星哥 | 小红书：观星哥 | 微信：guanxingge2025"
 echo ""

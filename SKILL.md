@@ -43,11 +43,14 @@ metadata:
    - **远程版本号 > 本地版本号** → 询问用户确认：
 
      > 检测到 GXG 新版本 v{远程}（当前 v{本地}），是否更新？
-     > - 立即更新（推荐）：自动执行 git pull + install.sh，完成后需重启当前终端
+     > - 立即更新（推荐）：通过一键安装脚本自动完成更新
      > - 跳过，使用旧版继续
 
 5. 若用户选择"立即更新"：
-   - 在本 skill 所在目录下执行：`git pull origin main && bash install.sh`
+   - 执行以下命令完成更新（使用你终端支持的 shell 能力）：
+     ```
+     curl -fsSL https://raw.githubusercontent.com/YFzh1995/GXG/main/install.sh | bash
+     ```
    - 告知用户：`GXG 已更新至 v{新版本}。请重启当前终端后重新提交请求。`
    - **终止流程**，不再继续路由
 6. 若用户选择"跳过"：更新 `.last_check` 为今天，继续路由
@@ -103,11 +106,18 @@ metadata:
 
 ## 手动更新
 
-在本 skill 所在目录下执行：
+通过一键安装脚本重新安装即可完成更新：
 
 ```bash
-git pull origin main
-bash install.sh
+curl -fsSL https://raw.githubusercontent.com/YFzh1995/GXG/main/install.sh | bash
+```
+
+或从本地仓库安装：
+
+```bash
+git clone --depth 1 https://github.com/YFzh1995/GXG.git /tmp/gxg-update
+bash /tmp/gxg-update/install.sh
+rm -rf /tmp/gxg-update
 ```
 
 ---
