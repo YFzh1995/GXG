@@ -47,9 +47,13 @@ metadata:
      > - 跳过，使用旧版继续
 
 5. 若用户选择"立即更新"：
-   - 执行以下命令完成更新（使用你终端支持的 shell 能力）：
+   - 执行更新命令（macOS/Linux/WSL 用 curl，Windows 用 iwr）：
      ```
      curl -fsSL https://raw.githubusercontent.com/YFzh1995/GXG/main/install.sh | bash
+     ```
+     或 Windows PowerShell：
+     ```
+     iwr -Uri https://raw.githubusercontent.com/YFzh1995/GXG/main/install.ps1 -OutFile $env:TEMP\gxg-install.ps1; & $env:TEMP\gxg-install.ps1; Remove-Item $env:TEMP\gxg-install.ps1
      ```
    - 告知用户：`GXG 已更新至 v{新版本}。请重启当前终端后重新提交请求。`
    - **终止流程**，不再继续路由
@@ -112,15 +116,23 @@ metadata:
 
 通过一键安装脚本重新安装即可完成更新：
 
+**macOS / Linux / WSL**：
 ```bash
 curl -fsSL https://raw.githubusercontent.com/YFzh1995/GXG/main/install.sh | bash
+```
+
+**Windows PowerShell**：
+```powershell
+powershell -ExecutionPolicy Bypass -Command "iwr -Uri 'https://raw.githubusercontent.com/YFzh1995/GXG/main/install.ps1' -OutFile install.ps1; .\install.ps1; Remove-Item install.ps1"
 ```
 
 或从本地仓库安装：
 
 ```bash
 git clone --depth 1 https://github.com/YFzh1995/GXG.git /tmp/gxg-update
-bash /tmp/gxg-update/install.sh
+bash /tmp/gxg-update/install.sh      # macOS/Linux/WSL
+# 或
+powershell -File /tmp/gxg-update/install.ps1  # Windows
 rm -rf /tmp/gxg-update
 ```
 
