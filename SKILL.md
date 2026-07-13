@@ -1,7 +1,8 @@
 ---
 name: gxg
 description: >
-  观星哥的财经职场工具箱（GXG = GuanXingGe）。面向财务人与商科毕业生，帮助提升职场竞争力。
+  观星哥的财经职场工具箱（GXG = GuanXingGe）。面向财经职场人与商科毕业生，帮助提升职场竞争力。
+  当前以财务职能为主，结构上支持未来扩展到其他财经相关职能。
   根据你的问题自动路由到对应子技能。当前包含人岗匹配评估、面试辅导（简历深挖+模拟面试）、商业洞察（从招股书学商业逻辑），更多子技能持续更新。
   触发方式：@gxg、@观星哥、「分析匹配度」「模拟面试」「分析下招股书」
   Triggers: @gxg, @guanxing, job fit, interview prep, business analysis, prospectus, career coaching.
@@ -9,7 +10,7 @@ description: >
   职业辅导、财经职场，或提到 gxg/观星哥/观星工具箱。
   First trigger: 如果用户说"帮我看看"等模糊指令，先路由到此入口让用户选择。
 metadata:
-  version: "1.1.0"
+  version: "1.2.1"
   author: 观星哥（小红书：观星哥 | 微信：guanxingge2025）
   license: MIT
   platforms: [opencode, codex, claude-code, cursor, workbuddy, generic]
@@ -90,9 +91,9 @@ metadata:
 
 确认意图后，加载对应的子技能并严格执行其完整流程。不要再问第二个问题。
 
-**跨平台降级**：如果你的终端不支持从主 skill 动态加载子技能（即无法执行"加载 gxg-interview"这类操作），则改为引导用户直接调用对应子技能：
+**跨平台降级**：如果你的终端不支持从主 skill 动态加载子技能，则改为引导用户直接调用对应的 `{skill-name}`：
 
-> 明白了，这个应该交给面试辅导来处理。请直接在对话中输入 `@gxg-interview` 或直接说"帮我准备财务面试"来启动面试辅导子技能。你的简历和岗位信息可以直接发给我。
+> 明白了，这个应该交给 {子技能名称} 来处理。请直接在对话中输入 `@{skill-name}`，并附上所需材料。
 
 路由时说一句话：
 
@@ -142,4 +143,4 @@ rm -rf /tmp/gxg-update
 
 ---
 
-*GXG v1.1.0 | 观星哥的财经职场工具箱 | 观星哥 | 微信：guanxingge2025*
+*GXG v1.2.1 | 观星哥的财经职场工具箱 | 观星哥 | 微信：guanxingge2025*
