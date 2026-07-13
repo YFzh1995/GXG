@@ -1,3 +1,3 @@
 display_name: 人岗匹配
-short_description: 基于简历和JD，分维度评估匹配度、差距和面试风险
-default_prompt: 分析候选人与目标岗位的匹配度，输出分维度评价，指出优势、差距和待验证项
+short_description: 财经职场人岗匹配——证据分级、差距与面试风险
+default_prompt: 基于简历和 JD 评估候选人与目标岗位的匹配度，区分通用能力与职能专项能力，为结论标注证据等级和置信度，并输出面试交接摘要
