@@ -9,7 +9,7 @@ description: >
   职业辅导、财经职场，或提到 gxg/观星哥/观星工具箱。
   First trigger: 如果用户说"帮我看看"等模糊指令，先路由到此入口让用户选择。
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   author: 观星哥（小红书：观星哥 | 微信：guanxingge2025）
   license: MIT
   platforms: [opencode, codex, claude-code, cursor, workbuddy, generic]
@@ -112,4 +112,4 @@ bash install.sh
 
 ---
 
-*GXG v1.0.0 | 观星哥的财经职场工具箱 | 观星哥 | 微信：guanxingge2025*
+*GXG v1.1.0 | 观星哥的财经职场工具箱 | 观星哥 | 微信：guanxingge2025*
