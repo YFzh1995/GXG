@@ -1,0 +1,6 @@
+﻿Discovery_ID,Listing_Year,Market,Ticker,Company,Listing_Date,Source_Status,Fact_Card_Version,Candidate_Topic_Count,Undergraduate_Selectable,Professional_Master_Selectable,Academic_Master_Selectable,Latest_Annual_Report,Observation_Stage,Discovery_Status,Updated_At,Next_Action,Local_Path
+2025_HKEX_02643_曹操出行,2025,HKEX,02643,曹操出行有限公司,2025-06-25,core-ready,v1,8,0,0,0,FY2025,early-stage,levels-assessed,2026-08-04T17:03:57+00:00,完成分层文献预检并更新可选状态,2025_HKEX_02643_曹操出行
+2025_HKEX_02026_小马智行,2025,HKEX,02026,小马智行,2025-11-06,core-ready,v01,8,0,0,0,FY2025,early-stage,levels-assessed,2026-08-04T17:17:57+00:00,执行分层文献预检,2025_HKEX_02026_小马智行
+2023_HKEX_09669_北森控股有限公司,2023,HKEX,09669,北森控股有限公司,2023-04-13,core-ready,v01,8,0,0,0,FY2025,multi-year,literature-precheck,2026-08-05T02:28:18+00:00,执行知网等数据库检索并回填文献矩阵；完成前题目不可标记selectable,2023_HKEX_09669_北森控股有限公司
+2024_SZSE_001389_广州广合科技股份有限公司,2024,SZSE,001389,广州广合科技股份有限公司,2024-04-02,building,v01,8,0,0,0,FY2025,two-year,levels-assessed,2026-08-19T15:32:03+00:00,完成分层文献预检并更新可选状态,2024_SZSE_001389_广州广合科技股份有限公司
+2024_SZSE_301556_浙江托普云农科技股份有限公司,2024,SZSE,301556,浙江托普云农科技股份有限公司,2024-10-17,core-ready,v01,9,0,0,0,FY2025,multi-year,literature-precheck,2026-08-23T11:15:05+00:00,为TP-T009生成文献需求说明书，学生按说明书检索并提交PDF,2024_SZSE_301556_浙江托普云农科技股份有限公司

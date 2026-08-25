@@ -240,6 +240,7 @@ Write-Info "已安装子技能："
 Write-Host "  ● 人岗匹配评估             →  gxg-job-fit" -ForegroundColor Cyan
 Write-Host "  ● 面试辅导与陪跑教练       →  gxg-interview" -ForegroundColor Cyan
 Write-Host "  ● 商业洞察                 →  gxg-insight" -ForegroundColor Cyan
+Write-Host "  ● 论文选题导师             →  gxg-thesis-topic" -ForegroundColor Cyan
 Write-Host ""
 Write-Info "使用方法：在 AI 对话中输入 @gxg 即可开始"
 Write-Info "手动更新：重新运行本安装脚本即可"
